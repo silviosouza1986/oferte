@@ -55,3 +55,7 @@ class ProfilePageView(TemplateView):
 
 class ChangePasswordPageView(TemplateView):
     template_name = 'configapp/change_password.html'
+
+
+class ApresentacaoView(TemplateView):
+    template_name = 'pages/apresentacao.html'

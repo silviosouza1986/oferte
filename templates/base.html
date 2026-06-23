@@ -29,7 +29,7 @@
     }
   </style>
 </head>
-<body class="{% if request.path == '/login/' %}is-login-page{% endif %}">
+<body class="{% if request.path == '/login/' or request.path == '/apresentacao/' %}is-login-page{% endif %}">
   <div class="md-progress" id="progress-bar">
     <div class="md-progress__bar"></div>
   </div>

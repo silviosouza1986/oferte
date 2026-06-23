@@ -73,7 +73,7 @@ async function listarOfertas() {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${formatDate(oferta.data)}</td>
-          <td><a href="/ofertas/dizimista/${oferta.dizimista}/" style="color:var(--md-sys-color-primary);text-decoration:none;">${oferta.dizimista_nome}</a></td>
+          <td><a href="/ofertas/dizimista/${oferta.dizimista}/" style="color:var(--md-sys-color-primary);text-decoration:none;">${escapeHtml(oferta.dizimista_nome)}</a></td>
           <td><strong>${formatCurrency(oferta.valor)}</strong></td>
           <td class="hide-mobile">${tipoChip}</td>
           <td>

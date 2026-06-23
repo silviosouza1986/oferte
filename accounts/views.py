@@ -2,6 +2,7 @@ from django.db import models
 from rest_framework import viewsets, status, generics, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenRefreshView
 from django.contrib.auth import authenticate
 from django.views.generic import TemplateView
 
@@ -46,12 +47,27 @@ class LogoutView(generics.GenericAPIView):
         return Response({'message': 'Logout realizado'})
 
 
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return request.user.is_authenticated and request.user.cargo == 'admin'
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return request.user.cargo == 'admin'
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         qs = super().get_queryset()
+        if self.request.user.cargo != 'admin':
+            qs = qs.filter(id=self.request.user.id)
         search = self.request.query_params.get('search', '')
         cargo = self.request.query_params.get('cargo', '')
         ativos = self.request.query_params.get('ativos', '')

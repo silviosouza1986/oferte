@@ -5,9 +5,10 @@ from .serializers import DizimistaListSerializer
 
 class DizimistaListView(generics.ListAPIView):
     serializer_class = DizimistaListSerializer
+    pagination_class = None
 
     def get_queryset(self):
-        qs = User.objects.filter(is_dizimista=True)
+        qs = User.objects.filter(is_dizimista=True).prefetch_related('ofertas')
         search = self.request.query_params.get('search', '')
         if search:
             qs = qs.filter(nome__icontains=search)

@@ -50,10 +50,10 @@ async function listarUsuarios() {
       data.results.forEach(user => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><strong>${user.nome}</strong></td>
-          <td class="hide-mobile">${formatCPF(user.cpf)}</td>
-          <td class="hide-mobile">${formatPhone(user.telefone)}</td>
-          <td>${user.email}</td>
+          <td><strong>${escapeHtml(user.nome)}</strong></td>
+          <td class="hide-mobile">${escapeHtml(formatCPF(user.cpf))}</td>
+          <td class="hide-mobile">${escapeHtml(formatPhone(user.telefone))}</td>
+          <td>${escapeHtml(user.email)}</td>
           <td class="hide-mobile"><span class="md-chip">${user.cargo === 'admin' ? 'Administrador' : 'Dizimista'}</span></td>
           <td class="hide-mobile">${user.is_dizimista ? '<span class="md-chip md-chip--success">Sim</span>' : '<span class="md-chip">Não</span>'}</td>
           <td>${user.is_active ? '<span class="md-chip md-chip--success">Ativo</span>' : '<span class="md-chip md-chip--error">Inativo</span>'}</td>

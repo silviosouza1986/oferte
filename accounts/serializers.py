@@ -1,5 +1,22 @@
+import re
 from rest_framework import serializers
 from .models import User
+
+
+def validate_cpf(value):
+    cpf = re.sub(r'\D', '', value)
+    if len(cpf) != 11:
+        raise serializers.ValidationError('CPF deve ter 11 dígitos')
+    if cpf == cpf[0] * 11:
+        raise serializers.ValidationError('CPF inválido')
+    for i in range(9, 11):
+        soma = sum(int(cpf[j]) * (i + 1 - j) for j in range(i))
+        dig = (soma * 10) % 11
+        if dig == 10:
+            dig = 0
+        if dig != int(cpf[i]):
+            raise serializers.ValidationError('CPF inválido')
+    return cpf
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,6 +33,9 @@ class UserSerializer(serializers.ModelSerializer):
             return obj.profile.theme_primary_color
         except Exception:
             return '#6750A4'
+
+    def validate_cpf(self, value):
+        return validate_cpf(value)
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)

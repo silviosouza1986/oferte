@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Apresentação — Oferte{% endblock %}
+
+{% block content %}
+<style>
+.apresentacao {
+  min-height: 100vh;
+  background-color: var(--md-sys-color-background);
+}
+
+.apresentacao__hero {
+  background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #7C52C8 100%);
+  color: var(--md-sys-color-on-primary);
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.apresentacao__hero-logo {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: var(--md-sys-shape-large);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.apresentacao__hero-logo .material-icons {
+  font-size: 48px;
+}
+
+.apresentacao__hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.apresentacao__hero p {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.apresentacao__section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.apresentacao__section h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: var(--md-sys-color-primary);
+}
+
+.apresentacao__section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-bottom: 16px;
+}
+
+.apresentacao__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.apresentacao__feature-card {
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.apresentacao__feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.apresentacao__feature-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border-radius: var(--md-sys-shape-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.apresentacao__feature-icon .material-icons {
+  font-size: 24px;
+}
+
+.apresentacao__feature-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.apresentacao__feature-card p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.apresentacao__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.apresentacao__step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.apresentacao__step-number {
+  min-width: 40px;
+  height: 40px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.apresentacao__step-content h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.apresentacao__step-content p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.apresentacao__step-content ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.8;
+}
+
+.apresentacao__cta {
+  text-align: center;
+  padding: 64px 24px;
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.apresentacao__cta h2 {
+  margin-bottom: 16px;
+}
+
+.apresentacao__cta .md-btn {
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+  border-radius: 24px;
+}
+
+.apresentacao__footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.apresentacao__footer a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+}
+</style>
+
+<div class="apresentacao">
+  <section class="apresentacao__hero">
+    <div class="apresentacao__hero-logo">
+      <span class="material-icons">church</span>
+    </div>
+    <h1>Oferte</h1>
+    <p>Sistema de Gestão de Ofertas e Dízimos para Instituições Religiosas</p>
+  </section>
+
+  <section class="apresentacao__section">
+    <h2>O que é o Oferte?</h2>
+    <p>
+      O <strong>Oferte</strong> é uma plataforma moderna e intuitiva desenvolvida para
+      informatizar o processo de registro, acompanhamento e gestão de ofertas e dízimos
+      em igrejas e instituições religiosas. Ele substitui planilhas, cadernos físicos e
+      controles manuais por um sistema digital robusto, acessível e seguro.
+    </p>
+    <p>
+      Com o Oferte, líderes religiosos, tesoureiros e equipes administrativas podem
+      cadastrar membros, registrar ofertas e dízimos de forma rápida, acompanhar o
+      histórico de contribuições e gerar relatórios consolidados — tudo em poucos cliques.
+    </p>
+    <p>
+      Além de organizar a gestão financeira da instituição, o sistema promove
+      <strong>transparência</strong>: obreiros, conselhos fiscais e membros autorizados
+      podem consultar os valores arrecadados, conferir o saldo disponível e acompanhar
+      a evolução das contribuições ao longo do tempo. Isso fortalece a confiança da
+      comunidade e facilita a prestação de contas.
+    </p>
+  </section>
+
+  <section class="apresentacao__section" style="background-color: var(--md-sys-color-surface-variant); border-radius: var(--md-sys-shape-large) 0;">
+    <h2>Funcionalidades</h2>
+    <div class="apresentacao__features">
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">dashboard</span>
+        </div>
+        <h3>Dashboard</h3>
+        <p>Visão geral do sistema com total de usuários, dizimistas, ofertas do mês e valor arrecadado, além de um gráfico com o histórico dos últimos 6 meses.</p>
+      </div>
+
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">people</span>
+        </div>
+        <h3>Cadastro de Usuários</h3>
+        <p>CRUD completo com campos de nome, CPF, telefone, e-mail, cargo (admin/dizimista), status ativo/inativo e classificação como dizimista. Inclui busca e filtros avançados.</p>
+      </div>
+
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">person_search</span>
+        </div>
+        <h3>Listagem de Dizimistas</h3>
+        <p>Visualização em grid com status mensal de cada dizimista: quem ofertou e quem ainda não ofertou no mês selecionado. Filtro por mês e ano.</p>
+      </div>
+
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">payments</span>
+        </div>
+        <h3>Registro de Ofertas</h3>
+        <p>Cadastro de ofertas com valor, dizimista vinculado, data e tipo de pagamento (dinheiro, cartão ou PIX). Suporte a edição e exclusão.</p>
+      </div>
+
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">history</span>
+        </div>
+        <h3>Histórico de Ofertas</h3>
+        <p>Consulta geral com filtros por dizimista, período e tipo de pagamento. Também é possível visualizar o histórico individual de cada dizimista em uma página dedicada.</p>
+      </div>
+
+      <div class="md-card md-card--elevated apresentacao__feature-card">
+        <div class="apresentacao__feature-icon">
+          <span class="material-icons">settings</span>
+        </div>
+        <h3>Configurações</h3>
+        <p>Personalize os dados da igreja (nome, CNPJ, endereço), altere a cor primária do tema, edite seus dados pessoais e troque sua senha a qualquer momento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="apresentacao__section">
+    <h2>Como usar</h2>
+    <div class="apresentacao__steps">
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">1</div>
+        <div class="apresentacao__step-content">
+          <h3>Acesse o sistema</h3>
+          <p>Faça login com seu e-mail e senha cadastrados. Se for o primeiro acesso, utilize as credenciais fornecidas pelo administrador.</p>
+        </div>
+      </div>
+
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">2</div>
+        <div class="apresentacao__step-content">
+          <h3>Conheça o Dashboard</h3>
+          <p>Ao entrar, você verá o dashboard com os principais indicadores:
+            <ul>
+              <li><strong>Total de Usuários</strong> — quantidade de pessoas cadastradas no sistema</li>
+              <li><strong>Dizimistas</strong> — total de membros classificados como dizimistas</li>
+              <li><strong>Ofertas do mês</strong> — número de ofertas registradas no mês atual</li>
+              <li><strong>Valor arrecadado no mês</strong> — soma total das ofertas do mês</li>
+              <li><strong>Gráfico dos últimos 6 meses</strong> — evolução mensal das arrecadações</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">3</div>
+        <div class="apresentacao__step-content">
+          <h3>Cadastre usuários</h3>
+          <p>No menu <strong>Usuários</strong>, você pode cadastrar, editar e desativar usuários. Cada usuário pode ser classificado como <em>Admin</em> (acesso total) ou <em>Dizimista</em> (acesso restrito a consultas).</p>
+        </div>
+      </div>
+
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">4</div>
+        <div class="apresentacao__step-content">
+          <h3>Registre ofertas e dízimos</h3>
+          <p>No menu <strong>Ofertas</strong>, clique no botão <strong>+</strong> para registrar uma nova oferta. Selecione o dizimista, informe o valor, a data e o tipo de pagamento. Você também pode ver todas as ofertas de um dizimista clicando no nome dele na listagem de dizimistas.</p>
+        </div>
+      </div>
+
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">5</div>
+        <div class="apresentacao__step-content">
+          <h3>Acompanhe os dizimistas</h3>
+          <p>No menu <strong>Dizimistas</strong>, visualize em um grid quem ofertou e quem não ofertou no mês. Use o filtro para navegar entre meses e anos anteriores.</p>
+        </div>
+      </div>
+
+      <div class="apresentacao__step">
+        <div class="apresentacao__step-number">6</div>
+        <div class="apresentacao__step-content">
+          <h3>Personalize sua experiência</h3>
+          <p>No menu <strong>Configurações</strong>, você pode:
+            <ul>
+              <li>Editar os dados da sua igreja (nome, CNPJ, endereço)</li>
+              <li>Alterar a cor principal do sistema (tema personalizável)</li>
+              <li>Atualizar seus dados pessoais (nome, telefone, e-mail)</li>
+              <li>Trocar sua senha</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apresentacao__cta">
+    <h2>Pronto para começar?</h2>
+    <p style="color: var(--md-sys-color-on-surface-variant); margin-bottom: 24px; font-size: 16px;">
+      Acesse o sistema e simplifique a gestão de ofertas da sua instituição.
+    </p>
+    <a href="/login/" class="md-btn md-btn--filled">Acessar o Sistema</a>
+  </section>
+
+  <div class="apresentacao__footer">
+    <p>Oferte — Sistema de Gestão de Ofertas e Dízimos</p>
+  </div>
+</div>
+{% endblock %}

@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = api.getToken();
   const user = api.getUser();
 
-  if (window.location.pathname === '/login/') {
-    if (token) {
+  if (window.location.pathname === '/login/' || window.location.pathname === '/apresentacao/') {
+    if (window.location.pathname === '/login/' && token) {
       window.location.href = '/';
       return;
     }

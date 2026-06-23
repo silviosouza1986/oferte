@@ -7,6 +7,7 @@ from accounts.views_pages import (
     OfertaListView, OfertaFormView, OfertaEditView, OfertaDizimistaView,
     DizimistaListView, ConfiguracoesView, IgrejaConfigView,
     TemaConfigView, ProfilePageView, ChangePasswordPageView,
+    ApresentacaoView,
 )
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     path('', include('configapp.urls')),
 
     # Frontend pages
+    path('apresentacao/', ApresentacaoView.as_view(), name='apresentacao'),
     path('', DashboardView.as_view(), name='dashboard'),
     path('usuarios/', UsuarioListView.as_view(), name='usuario-list'),
     path('usuarios/novo/', UsuarioFormView.as_view(), name='usuario-create'),

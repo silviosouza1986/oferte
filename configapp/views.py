@@ -1,6 +1,5 @@
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
-from django.contrib.auth import update_session_auth_hash
 
 from .models import ConfiguracaoIgreja, UserProfile
 from .serializers import ConfiguracaoIgrejaSerializer, UserProfileSerializer
@@ -36,6 +35,5 @@ class ChangePasswordView(generics.GenericAPIView):
 
         user.set_password(serializer.validated_data['new_password'])
         user.save()
-        update_session_auth_hash(request, user)
 
         return Response({'message': 'Senha alterada com sucesso'})

@@ -1,3 +1,5 @@
+let isRefreshing = false;
+
 const api = {
   getToken() {
     return localStorage.getItem('access_token');
@@ -27,6 +29,24 @@ const api = {
     localStorage.setItem('user', JSON.stringify(user));
   },
 
+  async _refreshToken() {
+    const refresh = this.getRefreshToken();
+    if (!refresh) return false;
+    try {
+      const response = await fetch('/api/auth/refresh/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh }),
+      });
+      if (!response.ok) return false;
+      const data = await response.json();
+      this.setTokens(data.access, data.refresh || refresh);
+      return true;
+    } catch {
+      return false;
+    }
+  },
+
   async request(method, url, data = null) {
     const headers = { 'Content-Type': 'application/json' };
     const token = this.getToken();
@@ -41,7 +61,26 @@ const api = {
 
     try {
       const response = await fetch(url, config);
-      if (response.status === 401 && this.getToken()) {
+      if (response.status === 401 && this.getToken() && !isRefreshing) {
+        isRefreshing = true;
+        const refreshed = await this._refreshToken();
+        isRefreshing = false;
+        if (refreshed) {
+          headers['Authorization'] = `Bearer ${this.getToken()}`;
+          config.headers = headers;
+          const retry = await fetch(url, config);
+          if (retry.ok) {
+            const json = await retry.json();
+            return json;
+          }
+          if (retry.status === 401) {
+            this.clearTokens();
+            window.location.href = '/login/';
+            return null;
+          }
+          const json = await retry.json();
+          throw { status: retry.status, data: json };
+        }
         this.clearTokens();
         window.location.href = '/login/';
         return null;

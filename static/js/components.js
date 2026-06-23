@@ -154,6 +154,16 @@ function validateCPF(cpf) {
   return true;
 }
 
+function escapeHtml(str) {
+  if (!str && str !== 0) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function debounce(fn, delay = 300) {
   let timer;
   return function (...args) {

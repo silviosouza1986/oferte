@@ -69,11 +69,11 @@ function criarCard(dizimista) {
 
   card.innerHTML = `
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-      <div class="md-avatar" style="background-color:${isOfertou ? '#2E7D32' : '#C62828'};">${getInitials(dizimista.nome)}</div>
+      <div class="md-avatar" style="background-color:${isOfertou ? '#2E7D32' : '#C62828'};">${escapeHtml(getInitials(dizimista.nome))}</div>
       <div style="flex:1;">
-        <div style="font-size:16px;font-weight:500;">${dizimista.nome}</div>
-        <div class="text-small text-muted">${formatCPF(dizimista.cpf)}</div>
-        <div class="text-small text-muted">${formatPhone(dizimista.telefone)}</div>
+        <div style="font-size:16px;font-weight:500;">${escapeHtml(dizimista.nome)}</div>
+        <div class="text-small text-muted">${escapeHtml(formatCPF(dizimista.cpf))}</div>
+        <div class="text-small text-muted">${escapeHtml(formatPhone(dizimista.telefone))}</div>
       </div>
       <span class="md-chip ${isOfertou ? 'md-chip--success' : 'md-chip--error'}">${isOfertou ? 'Ofertou' : 'Não ofertou'}</span>
     </div>
