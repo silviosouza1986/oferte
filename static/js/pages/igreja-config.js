@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   applyMasks();
   carregarConfig();
 
+  const user = api.getUser();
+  const isAdmin = user && user.cargo === 'admin';
+
+  if (!isAdmin) {
+    document.querySelectorAll('#igreja-form input, #igreja-form textarea').forEach(el => {
+      el.disabled = true;
+    });
+    document.querySelector('#igreja-form button[type="submit"]').style.display = 'none';
+    return;
+  }
+
   document.getElementById('igreja-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     showProgress();

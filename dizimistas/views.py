@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from accounts.models import User
 from .serializers import DizimistaListSerializer
 
@@ -6,6 +6,7 @@ from .serializers import DizimistaListSerializer
 class DizimistaListView(generics.ListAPIView):
     serializer_class = DizimistaListSerializer
     pagination_class = None
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         qs = User.objects.filter(is_dizimista=True).prefetch_related('ofertas')

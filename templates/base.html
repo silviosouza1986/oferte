@@ -46,15 +46,15 @@
         <span class="material-icons">dashboard</span>
         <span>Dashboard</span>
       </a>
-      <a href="/usuarios/" class="sidebar__item {% if '/usuarios' in request.path %}sidebar__item--active{% endif %}">
+      <a href="/usuarios/" class="sidebar__item {% if '/usuarios' in request.path %}sidebar__item--active{% endif %}" data-admin-only>
         <span class="material-icons">people</span>
         <span>Usuários</span>
       </a>
-      <a href="/dizimistas/" class="sidebar__item {% if '/dizimistas' in request.path %}sidebar__item--active{% endif %}">
+      <a href="/dizimistas/" class="sidebar__item {% if '/dizimistas' in request.path %}sidebar__item--active{% endif %}" data-admin-only>
         <span class="material-icons">person</span>
         <span>Dizimistas</span>
       </a>
-      <a href="/ofertas/" class="sidebar__item {% if '/ofertas' in request.path %}sidebar__item--active{% endif %}">
+      <a href="/ofertas/" class="sidebar__item {% if '/ofertas' in request.path %}sidebar__item--active{% endif %}" data-admin-only>
         <span class="material-icons">payments</span>
         <span>Ofertas</span>
       </a>
@@ -85,15 +85,15 @@
       <span class="material-icons">dashboard</span>
       <span>Início</span>
     </a>
-    <a href="/usuarios/" class="md-bottom-nav__item {% if '/usuarios' in request.path %}md-bottom-nav__item--active{% endif %}">
+    <a href="/usuarios/" class="md-bottom-nav__item {% if '/usuarios' in request.path %}md-bottom-nav__item--active{% endif %}" data-admin-only>
       <span class="material-icons">people</span>
       <span>Usuários</span>
     </a>
-    <a href="/dizimistas/" class="md-bottom-nav__item {% if '/dizimistas' in request.path %}md-bottom-nav__item--active{% endif %}">
+    <a href="/dizimistas/" class="md-bottom-nav__item {% if '/dizimistas' in request.path %}md-bottom-nav__item--active{% endif %}" data-admin-only>
       <span class="material-icons">person</span>
       <span>Dizimistas</span>
     </a>
-    <a href="/ofertas/" class="md-bottom-nav__item {% if '/ofertas' in request.path %}md-bottom-nav__item--active{% endif %}">
+    <a href="/ofertas/" class="md-bottom-nav__item {% if '/ofertas' in request.path %}md-bottom-nav__item--active{% endif %}" data-admin-only>
       <span class="material-icons">payments</span>
       <span>Ofertas</span>
     </a>
@@ -103,6 +103,17 @@
     </a>
   </nav>
 
+  <script>
+    function escapeHtml(str) {
+      if (!str && str !== 0) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
   <script src="{% static 'js/api.js' %}"></script>
   <script src="{% static 'js/theme.js' %}"></script>
   <script src="{% static 'js/components.js' %}"></script>
@@ -117,6 +128,10 @@
       const nameEl = document.getElementById('sidebar-user-name');
       if (user && user.nome && nameEl) {
         nameEl.textContent = user.nome;
+      }
+
+      if (user && user.cargo !== 'admin') {
+        document.querySelectorAll('[data-admin-only]').forEach(el => el.style.display = 'none');
       }
 
       const logoutBtn = document.getElementById('logout-btn');

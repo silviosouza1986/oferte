@@ -4,27 +4,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function carregarDashboard() {
   showProgress();
-  try {
-    const token = api.getToken();
-    if (!token) {
-      window.location.href = '/login/';
-      return;
-    }
+  const token = api.getToken();
+  if (!token) {
+    window.location.href = '/login/';
+    return;
+  }
 
+  try {
     const usuarios = await api.get('/api/usuarios/');
     if (usuarios) {
       document.getElementById('total-usuarios').textContent = usuarios.count || 0;
     }
+  } catch (e) {}
 
+  try {
     const dizimistas = await api.get('/api/dizimistas/');
     if (dizimistas) {
       document.getElementById('total-dizimistas').textContent = dizimistas.count || dizimistas.length || 0;
     }
+  } catch (e) {
+    document.getElementById('total-dizimistas').textContent = '—';
+  }
 
-    const hoje = new Date();
-    const mesAtual = hoje.getMonth() + 1;
-    const anoAtual = hoje.getFullYear();
+  const hoje = new Date();
+  const mesAtual = hoje.getMonth() + 1;
+  const anoAtual = hoje.getFullYear();
 
+  try {
     const dataInicio = `${anoAtual}-${String(mesAtual).padStart(2, '0')}-01`;
     const ultimoDia = new Date(anoAtual, mesAtual, 0).getDate();
     const dataFim = `${anoAtual}-${String(mesAtual).padStart(2, '0')}-${String(ultimoDia).padStart(2, '0')}`;
@@ -35,14 +41,13 @@ async function carregarDashboard() {
 
     const totalValor = ofertasArr.reduce((acc, o) => acc + parseFloat(o.valor), 0);
     document.getElementById('total-valor-mes').textContent = formatCurrency(totalValor);
-
-    await carregarGrafico();
-
-  } catch (err) {
-    mdSnackbar('Erro ao carregar dashboard', 'error');
-  } finally {
-    hideProgress();
+  } catch (e) {
+    document.getElementById('total-ofertas-mes').textContent = '—';
+    document.getElementById('total-valor-mes').textContent = '—';
   }
+
+  await carregarGrafico();
+  hideProgress();
 }
 
 async function carregarGrafico() {

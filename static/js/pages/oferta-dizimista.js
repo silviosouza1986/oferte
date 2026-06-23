@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const user = api.getUser();
+  if (!user || user.cargo !== 'admin') {
+    window.location.href = '/';
+    return;
+  }
   const pathParts = window.location.pathname.split('/');
   const idIndex = pathParts.indexOf('dizimista') + 1;
   const dizimistaId = pathParts[idIndex];

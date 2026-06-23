@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const user = api.getUser();
+  if (!user || user.cargo !== 'admin') {
+    window.location.href = '/';
+    return;
+  }
   const hoje = new Date();
   const mesAtual = hoje.getMonth() + 1;
   const anoAtual = hoje.getFullYear();

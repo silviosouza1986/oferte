@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  if (user && user.cargo !== 'admin') {
+    const adminPaths = ['/usuarios', '/dizimistas', '/ofertas'];
+    const isAdminPage = adminPaths.some(p => window.location.pathname.startsWith(p));
+    if (isAdminPage) {
+      window.location.href = '/';
+      return;
+    }
+  }
+
   const primaryColor = localStorage.getItem('theme_primary_color');
   if (primaryColor) {
     applyTheme(primaryColor);

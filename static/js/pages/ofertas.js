@@ -2,6 +2,11 @@ let currentPage = 1;
 let totalPages = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const user = api.getUser();
+  if (!user || user.cargo !== 'admin') {
+    window.location.href = '/';
+    return;
+  }
   carregarDizimistas();
   listarOfertas();
 

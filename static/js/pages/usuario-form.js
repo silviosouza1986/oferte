@@ -1,6 +1,11 @@
 let editId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const user = api.getUser();
+  if (!user || user.cargo !== 'admin') {
+    window.location.href = '/';
+    return;
+  }
   applyMasks();
 
   const pathParts = window.location.pathname.split('/');

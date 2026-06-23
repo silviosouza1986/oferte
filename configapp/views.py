@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .models import ConfiguracaoIgreja, UserProfile
 from .serializers import ConfiguracaoIgrejaSerializer, UserProfileSerializer
 from accounts.serializers import ChangePasswordSerializer
+from accounts.views import IsAdminUser
 
 
 class ConfiguracaoIgrejaView(generics.RetrieveUpdateAPIView):
@@ -12,6 +13,11 @@ class ConfiguracaoIgrejaView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return ConfiguracaoIgreja.get_instance()
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return [permissions.IsAuthenticated()]
+        return [permissions.IsAuthenticated(), IsAdminUser()]
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):

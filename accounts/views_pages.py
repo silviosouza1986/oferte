@@ -16,6 +16,11 @@ class UsuarioFormView(TemplateView):
 class UsuarioEditView(TemplateView):
     template_name = 'accounts/usuario_form.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['usuario'] = True
+        return context
+
 
 class OfertaListView(TemplateView):
     template_name = 'ofertas/oferta_list.html'
