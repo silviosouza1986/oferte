@@ -32,6 +32,8 @@ Além de organizar a gestão financeira da instituição, o sistema promove **tr
 ### Dashboard
 Visão geral do sistema com total de usuários, dizimistas, ofertas do mês e valor arrecadado, além de um gráfico com o histórico dos últimos 6 meses.
 
+![Dashboard](screenshots/dashboard.png)
+
 ### Cadastro de Usuários
 CRUD completo com campos de nome, CPF, telefone, e-mail, cargo (admin/dizimista), status ativo/inativo e classificação como dizimista. Inclui busca e filtros avançados.
 
@@ -47,12 +49,16 @@ Consulta geral com filtros por dizimista, período e tipo de pagamento. Também 
 ### Configurações
 Personalize os dados da igreja (nome, CNPJ, endereço), altere a cor primária do tema, edite seus dados pessoais e troque sua senha a qualquer momento.
 
+![Configurações](screenshots/configuracoes.png)
+
 ---
 
 ## Como usar
 
 ### 1. Acesse o sistema
 Faça login com seu e-mail e senha cadastrados. Se for o primeiro acesso, utilize as credenciais fornecidas pelo administrador.
+
+![Tela de Login](screenshots/login.png)
 
 ### 2. Conheça o Dashboard
 Ao entrar, você verá o dashboard com os principais indicadores:
